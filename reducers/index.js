@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux'
 import initialData from '../utils/intialData'
-import * as actions from '../actions'
+import * as ACTIONS from '../actions'
 
-const decks = (state = initialData, action) => {
+const decks = (state = {}, action) => {
   switch (action.type) {
-    case actions.FETCH_DECKS:
-      return state
+    case ACTIONS.DISPLAY_DECKS:
+      return action.payload
     default:
       return state
   }

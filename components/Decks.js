@@ -15,7 +15,10 @@ class Decks extends Component {
     return (
       <View>
         <Text>
-          {this.props.decks && JSON.stringify(this.props.decks)}
+          {this.props.decks && Object
+            .values(this.props.decks)
+            .map(deck => <Text>{JSON.stringify(deck.title)}</Text>)
+}
         </Text>
       </View>
     )
