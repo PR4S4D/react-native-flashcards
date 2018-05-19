@@ -8,7 +8,7 @@ export const fetchDecks = () => ({type: FETCH_DECKS})
 
 export const displayDecks = decks => ({type: DISPLAY_DECKS, payload: decks})
 
-export const saveDeck = title => ({type: SAVE_DECK, payload: title})
+export const createDeck = title => ({type: SAVE_DECK, payload: title})
 
 export const addCardToDeck = deck => ({type: ADD_CARD, payload: deck})
 

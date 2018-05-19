@@ -24,10 +24,10 @@ function * removeCard(action) {
 }
 
 function * rootSaga() {
-  yield[takeEvery(ACTIONS.FETCH_DECKS, fetchDecks),
-    takeEvery(ACTIONS.SAVE_DECK, saveDeck),
-    takeEvery(ACTIONS.ADD_CARD, addCardToDeck),
-    takeEvery(ACTIONS.REMOVE_CARD, removeCard)]
+  yield takeEvery(ACTIONS.FETCH_DECKS, fetchDecks)
+  yield takeEvery(ACTIONS.SAVE_DECK, saveDeck)
+  yield takeEvery(ACTIONS.ADD_CARD, addCardToDeck)
+  yield takeEvery(ACTIONS.REMOVE_CARD, removeCard)
 }
 
 export default rootSaga

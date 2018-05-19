@@ -1,38 +1,24 @@
 import React, {Component} from 'react'
-import {View, Text, Button} from 'react-native'
-import {connect} from 'react-redux'
-import {fetchDecks, saveDeck, addCardToDeck, removeCard} from '../actions'
+import {View, Text} from 'react-native'
+import {Card, ListItem} from 'react-native-elements'
 
-class Decks extends Component {
+export default class Decks extends Component {
 
   componentDidMount() {
     this
       .props
-      .fetchDecks();
+      .fetchDecks()
   }
 
   render() {
+    const decks = Object.values(this.props.decks)
     return (
       <View>
-        <Text>
-          {this.props.decks && JSON.stringify(this.props.decks)
-}
-        </Text>
-        <Button onPress={() => this.props.saveDeck("Udacity")} title="create card"></Button>
-        <Button
-          onPress={() => this.props.removeCard({
-          ["title"]: "Udacity",
-          ["question"]: {
-            question: 'What is React?',
-            answer: 'A library for managing user interfaces'
-          }
-        })}
-          title="Add Card"></Button>
+        {decks.map(deck => (<ListItem
+          key={deck.title}
+          title={deck.title}
+          subtitle={`${deck.questions.length} cards`}/>))}
       </View>
     )
   }
 }
-
-mapStateToProps = state => ({decks: state.decks})
-
-export default connect(mapStateToProps, {fetchDecks, addCardToDeck, removeCard, saveDeck})(Decks)
