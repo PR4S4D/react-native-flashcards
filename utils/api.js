@@ -1,5 +1,6 @@
 import {AsyncStorage} from 'react-native'
 import decks from './intialData'
+import {SAVE_DECK} from '../actions';
 const DECKS = 'flashcards:decks'
 const LOAD_DATA = 'flashcards:initialData'
 
@@ -17,7 +18,6 @@ export function * getDecks() {
   if (!loaded) {
     yield loadInitialData();
     yield AsyncStorage.setItem(LOAD_DATA, "true")
-
   }
 
   let decks = yield AsyncStorage
@@ -27,8 +27,26 @@ export function * getDecks() {
   return decks
 }
 
-export function * getAsyncDecks() {
-  return AsyncStorage
-    .getItem(DECKS)
-    .then(data => data)
+export function * getDeck(title) {
+  let decks = yield getDecks()
+  return decks[title]
+}
+
+export function * saveDeck(title, questions = []) {
+  yield AsyncStorage.mergeItem(DECKS, JSON.stringify({
+    [title]: {
+      title,
+      questions
+    }
+  }))
+}
+
+export function * addCardToDeck({title, question}) {
+  let decks = yield getDecks()
+  yield saveDeck(title, decks[title].questions.concat(question))
+}
+
+export function * removeCardFromDeck({title, question}) {
+  let decks = yield getDecks()
+  yield saveDeck(title, decks[title].questions.filter(q => q.question !== question.question))
 }
