@@ -11,4 +11,13 @@ const decks = (state = {}, action) => {
   }
 }
 
-export default combineReducers({decks})
+const deck = (state = {}, action) => {
+  switch (action.type) {
+    case ACTIONS.UPDATE_DECK:
+      return action.payload
+    default:
+      return state
+  }
+}
+
+export default combineReducers({decks, deck})

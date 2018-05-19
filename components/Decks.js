@@ -22,6 +22,7 @@ export default class Decks extends Component {
         {decks.map(deck => (<ListItem
           key={deck.title}
           title={deck.title}
+          onPress={() => this.props.navigation.navigate('DeckView', {'title': deck.title})}
           subtitle={`${deck.questions.length} cards`}/>))}
         <ActionButton
           offsetX={15}

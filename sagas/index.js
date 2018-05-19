@@ -15,6 +15,7 @@ function * saveDeck(action) {
 
 function * addCardToDeck(action) {
   yield API.addCardToDeck(action.payload)
+  yield put({type: ACTIONS.GET_DECK, payload: action.payload.title})
   yield fetchDecks()
 }
 
@@ -23,11 +24,18 @@ function * removeCard(action) {
   yield fetchDecks()
 }
 
+function * getDeck(action) {
+  let deck = yield API.getDeck(action.payload)
+  yield put({type: ACTIONS.UPDATE_DECK, payload: deck})
+  yield fetchDecks()
+}
+
 function * rootSaga() {
   yield takeEvery(ACTIONS.FETCH_DECKS, fetchDecks)
   yield takeEvery(ACTIONS.SAVE_DECK, saveDeck)
   yield takeEvery(ACTIONS.ADD_CARD, addCardToDeck)
   yield takeEvery(ACTIONS.REMOVE_CARD, removeCard)
+  yield takeEvery(ACTIONS.GET_DECK, getDeck)
 }
 
 export default rootSaga
