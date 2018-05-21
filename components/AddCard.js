@@ -4,10 +4,9 @@ import {FormInput, Button, Card, FormLabel, FormValidationMessage} from 'react-n
 
 export default class AddCard extends Component {
 
-  static navigationOptions = ({deck}) => {
-    if (deck) 
-      return {title: deck.title}
-    }
+  static navigationOptions = ({navigation}) => {
+    return {title: navigation.state.params.title}
+  }
 
   componentDidMount() {
     this
@@ -47,7 +46,6 @@ export default class AddCard extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <View>
         <FormLabel>Question</FormLabel>

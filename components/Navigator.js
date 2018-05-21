@@ -3,6 +3,7 @@ import Decks from '../containers/Decks'
 import CreateDeck from '../containers/CreateDeck';
 import DeckView from '../containers/DeckView'
 import AddCard from '../containers/AddCard'
+import Quiz from '../containers/Quiz'
 
 const navigationOptions = {
   headerStyle: {
@@ -33,6 +34,10 @@ export default createStackNavigator({
   },
   AddCard: {
     screen: AddCard,
+    navigationOptions
+  },
+  Quiz: {
+    screen: Quiz,
     navigationOptions
   }
 })

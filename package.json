@@ -1,5 +1,5 @@
 {
-  "name": "quiz-app",
+  "name": "flash-cards",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -24,6 +24,7 @@
     "react-native": "~0.55.2",
     "react-native-action-button": "^2.8.4",
     "react-native-elements": "^0.19.1",
+    "react-native-flip-card": "^3.5.2",
     "react-navigation": "^2.0.1",
     "react-navigator": "^0.0.0-0",
     "react-redux": "^5.0.7",

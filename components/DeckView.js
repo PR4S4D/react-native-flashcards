@@ -5,7 +5,6 @@ import {Button} from 'react-native-elements'
 export default class DeckView extends Component {
 
   componentDidMount() {
-    console.log('componentdidmount')
     const {title} = this.props.navigation.state.params
     this
       .props
@@ -18,7 +17,6 @@ export default class DeckView extends Component {
 
   render() {
     const {deck} = this.props
-    console.log('rendering ', this.props);
 
     if (!deck.title) 
       return (<View/>);
@@ -27,7 +25,9 @@ export default class DeckView extends Component {
       <View>
         <Text>{deck.title}</Text>
         <Text>{`${deck.questions.length} cards`}</Text>
-        <Button title="Start Quiz"/>
+        <Button
+          title="Start Quiz"
+          onPress={() => this.props.navigation.navigate('Quiz', {title: deck.title})}/>
         <Button
           title="Add Card"
           onPress={() => this.props.navigation.navigate('AddCard', {title: deck.title})}/>
