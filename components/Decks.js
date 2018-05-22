@@ -29,7 +29,6 @@ export default class Decks extends Component {
           offsetY={15}
           buttonColor="#ff8f00"
           onPress={() => navigate('CreateDeck')}/>
-
       </View>
     )
   }

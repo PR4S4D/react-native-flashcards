@@ -48,11 +48,13 @@ export default class AddCard extends Component {
   render() {
     return (
       <View>
+
         <FormLabel>Question</FormLabel>
         <FormInput
           placeholder="Question"
           onChangeText={question => this.setState({question})}/>
         <FormValidationMessage>{!this.state.question && this.state.error}</FormValidationMessage>
+
         <FormLabel>Answer</FormLabel>
         <FormInput
           placeholder="Answer"
