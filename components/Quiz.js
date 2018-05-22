@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {View, Text, StyleSheet, Dimensions} from 'react-native'
 import {Card, Button} from 'react-native-elements'
 import FlipCard from 'react-native-flip-card'
+import {clearLocalNotification, setLocalNotification} from '../utils/notification'
 
 export default class Quiz extends Component {
 
@@ -67,6 +68,9 @@ export default class Quiz extends Component {
     }
 
     if (this.state.quizDone) {
+      // Don't show notification when the quiz is done for the day
+      clearLocalNotification().then(setLocalNotification)
+
       return (
         <View style={styles.msg}>
           <Text>Your Score is {this.state.score}/{this.state.numberOfQuestions}</Text>
