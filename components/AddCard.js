@@ -59,7 +59,7 @@ export default class AddCard extends Component {
           onChangeText={answer => this.setState({answer})}/>
         <FormValidationMessage>{!this.state.answer && this.state.error}</FormValidationMessage>
 
-        <Button title='Add Card' onPress={this.addCard}/>
+        <Button title='Add Card' onPress={this.addCard} backgroundColor='#005b4f'/>
 
       </View>
     )

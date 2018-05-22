@@ -38,7 +38,18 @@ export default class Quiz extends Component {
         score: ++this.state.score
       })
     }
+  }
 
+  inCorrectAnswer = () => {
+    let currentCount = this.state.count
+    if ((currentCount + 1) < this.state.numberOfQuestions) {
+      this.setState({
+        count: currentCount + 1,
+        question: this.props.questions[currentCount + 1]
+      })
+    } else {
+      this.setState({quizDone: true})
+    }
   }
 
   render() {
@@ -47,6 +58,10 @@ export default class Quiz extends Component {
       return (
         <View style={styles.msg}>
           <Text>No questions in this Deck!</Text>
+          <Button
+            title="Go home"
+            backgroundColor='#005b4f'
+            onPress={() => this.props.navigation.navigate('Decks')}/>
         </View>
       )
     }
@@ -55,6 +70,10 @@ export default class Quiz extends Component {
       return (
         <View style={styles.msg}>
           <Text>Your Score is {this.state.score}/{this.state.numberOfQuestions}</Text>
+          <Button
+            title="Go home"
+            backgroundColor='#005b4f'
+            onPress={() => this.props.navigation.navigate('Decks')}/>
         </View>
       )
     }
@@ -63,6 +82,9 @@ export default class Quiz extends Component {
       <View style={{
         flex: 1
       }}>
+        <Text style={styles.questionCount}>{this.state.count + 1}
+          / {this.state.numberOfQuestions}
+        </Text>
         <View style={styles.container}>
 
           <FlipCard
@@ -73,12 +95,12 @@ export default class Quiz extends Component {
             perspective={1000}
             flipVertical={false}
             flipHorizontal={true}>
-            <Card containerStyle={styles.face}>
+            <Card containerStyle={styles.question}>
               <Text>{this.state.question && this.state.question.question}
               </Text>
             </Card>
 
-            <Card containerStyle={styles.back}>
+            <Card containerStyle={styles.answer}>
               <Text>{this.state.question && this.state.question.answer}</Text>
             </Card>
 
@@ -86,19 +108,18 @@ export default class Quiz extends Component {
         </View>
         <View
           style={{
-          backgroundColor: '#ccc',
           flex: 2,
           justifyContent: 'space-around'
         }}>
           <Button
-            style={{
-            margin: 4
-          }}
             title="Correct"
+            outline={true}
+            color='#005b4f'
             onPress={this.correctAnswer}/>
-          <Button style={{
-            margin: 4
-          }} title="Incorrect"/>
+          <Button
+            backgroundColor='#005b4f'
+            title="Incorrect"
+            onPress={this.inCorrectAnswer}/>
         </View>
       </View>
 
@@ -110,7 +131,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 5,
     flexDirection: 'row',
-    backgroundColor: '#412312',
     justifyContent: 'center'
   },
   flipCard: {
@@ -119,21 +139,25 @@ const styles = StyleSheet.create({
       .get('window')
       .width
   },
-  face: {
+  question: {
     flex: 1,
-    backgroundColor: '#2ecc71',
+    backgroundColor: '#4ebaaa',
     justifyContent: 'center',
     alignItems: 'center'
   },
-  back: {
+  answer: {
     flex: 1,
-    backgroundColor: '#f1c40f',
+    backgroundColor: '#ffc046',
     justifyContent: 'center',
     alignItems: 'center'
   },
   msg: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center'
+  },
+  questionCount: {
+    alignSelf: 'flex-start',
+    padding: 1
   }
 });

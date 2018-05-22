@@ -15,6 +15,7 @@ export default class Decks extends Component {
   render() {
     const decks = Object.values(this.props.decks)
     const {navigate} = this.props.navigation
+    console.log(this.props)
     return (
       <View style={{
         flex: 1
@@ -27,7 +28,7 @@ export default class Decks extends Component {
         <ActionButton
           offsetX={15}
           offsetY={15}
-          buttonColor="rgba(231,76,60,1)"
+          buttonColor="#ff8f00"
           onPress={() => navigate('CreateDeck')}/>
 
       </View>

@@ -34,7 +34,10 @@ export default class CreateDeck extends Component {
             placeholder="Deck title"
             onChangeText={(title) => this.setState({title})}/>
           <FormValidationMessage>{this.state.error}</FormValidationMessage>
-          <Button title='Create Deck' onPress={this.createDeck}/>
+          <Button
+            title='Create Deck'
+            backgroundColor='#005b4f'
+            onPress={this.createDeck}/>
         </Card>
       </View>
     )

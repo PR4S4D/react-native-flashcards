@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {View, Text} from 'react-native'
-import {Button} from 'react-native-elements'
+import {View, StyleSheet} from 'react-native'
+import {Button, Text} from 'react-native-elements'
 
 export default class DeckView extends Component {
 
@@ -22,16 +22,38 @@ export default class DeckView extends Component {
       return (<View/>);
     
     return (
-      <View>
-        <Text>{deck.title}</Text>
-        <Text>{`${deck.questions.length} cards`}</Text>
-        <Button
-          title="Start Quiz"
-          onPress={() => this.props.navigation.navigate('Quiz', {title: deck.title})}/>
-        <Button
-          title="Add Card"
-          onPress={() => this.props.navigation.navigate('AddCard', {title: deck.title})}/>
+      <View style={styles.container}>
+        <View style={styles.deck}>
+          <Text h1>{deck.title}</Text>
+          <Text h4>{`${deck.questions.length} cards`}</Text>
+        </View>
+        <View style={styles.deckActions}>
+          <Button
+            title="Start Quiz"
+            outline={true}
+            color='#005b4f'
+            onPress={() => this.props.navigation.navigate('Quiz', {title: deck.title})}/>
+          <Button
+            title="Add Card"
+            backgroundColor='#005b4f'
+            onPress={() => this.props.navigation.navigate('AddCard', {title: deck.title})}/>
+        </View>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  deck: {
+    flex: 4,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  deckActions: {
+    flex: 2,
+    justifyContent: 'space-around'
+  }
+})

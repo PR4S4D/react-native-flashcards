@@ -7,7 +7,7 @@ import Quiz from '../containers/Quiz'
 
 const navigationOptions = {
   headerStyle: {
-    backgroundColor: '#333'
+    backgroundColor: '#00897b'
   },
   headerTitleStyle: {
     color: '#fff'
